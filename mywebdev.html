@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Aljune Yatar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Reset some default browser styling */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #0a1a2a;
+        color: #ffffff;
+        text-align: center;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #0a1a2a;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .social-icons a {
+        margin: 10px;
+    }
+
+    .social-icons img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    .hero {
+        margin: 40px auto;
+        padding: 20px;
+        max-width: 600px;
+        background-color: #0a1a2a;
+    }
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid #ffd700;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .typewriter {
+        font-size: 1.5rem;
+        color: #ffd700;
+        margin-bottom: 20px;
+        display: inline-block;
+        border-right: 2px solid #ffd700;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3s steps(12, end) infinite, blink 0.5s step-end infinite alternate;
+    }
+
+    @keyframes typing {
+        0% {
+            width: 0;
+        }
+        50% {
+            width: 12ch; /* Adjust this based on the longest word */
+        }
+        100% {
+            width: 0;
+        }
+    }
+
+    @keyframes blink {
+        from {
+            border-color: transparent;
+        }
+        to {
+            border-color: #ffd700;
+        }
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #ffd700;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #ffa500;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+        background-color: #f1f1f1;
+        color: #0a1a2a;
+    }
+
+    body.dark-mode header {
+        background-color: #ffffff;
+    }
+
+    body.dark-mode .profile-picture {
+        border-color: #0a1a2a;
+    }
+
+    button.dark-mode {
+        background-color: #0a1a2a;
+        color: #ffffff;
+    }
+
+    button.dark-mode:hover {
+        background-color: #333333;
+    }
+
+    /* Responsive tweaks for small screens */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        button {
+            font-size: 0.9rem;
+            padding: 8px 16px;
+        }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        button {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+        }
+    }
+</style>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">jbanas.dev</a>
+            <div class="social-icons">
+                <a href="#"><img src="Image/Marven.png" alt="GitHub"></a>
+                <a href="#"><img src="Image/Milmar.png" alt="LinkedIn"></a>
+                <a href="#"><img src="Image/Raphy.png" alt="Instagram"></a>
+                <img src="Image/Sherwin.png" alt="Dark Mode" class="dark-mode-toggle" id="darkModeToggle">
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="logo/logo.png" alt="Aljune Yatar" class="profile-picture">
+        <h1>Hi, I'm Aljune Yatar <span>👋</span></h1>
+        <h2><span class="typewriter" id="typewriter"></span></h2>
+        <p>I am a self-taught web developer with a strong eye for innovative design and a keen understanding of techniques geared toward optimum user experience.</p>
+        <button>Tech Stack</button>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Get the dark mode toggle button
+        const darkModeToggle = document.getElementById("darkModeToggle");
+
+        // Add a click event listener to toggle dark mode
+        darkModeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            const button = document.querySelector("button");
+            button.classList.toggle("dark-mode");
+
+            // Change the icon depending on the mode
+            if (document.body.classList.contains("dark-mode")) {
+                darkModeToggle.src = "sun.png"; // Switch to sun icon for light mode
+            } else {
+                darkModeToggle.src = "moon.png"; // Switch back to moon icon for dark mode
+            }
+        });
+
+        // Typewriter effect alternating between "Web Developer" and "Designer"
+        const roles = ["Web Developer", "Designer"];
+        let roleIndex = 0;
+        const typewriterElement = document.getElementById("typewriter");
+
+        function typeRole() {
+            typewriterElement.textContent = roles[roleIndex];
+            roleIndex = (roleIndex + 1) % roles.length;
+        }
+
+        // Change the role every 3 seconds (3000 milliseconds)
+        setInterval(typeRole, 3000);
+
+        // Initialize the first role
+        typeRole();
+    </script>
+</body>
+</html>
